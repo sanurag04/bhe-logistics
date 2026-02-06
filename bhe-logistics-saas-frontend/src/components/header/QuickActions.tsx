@@ -45,6 +45,18 @@ export default function QuickActions() {
 						backgroundColor: '#e0e0e0',
 					},
 					border: '1px solid #dfe3e8',
+					'&:focus': {
+						outline: 'none',
+						boxShadow: 'none',
+					},
+					'&:focus-visible': {
+						outline: 'none',
+						boxShadow: 'none',
+					},
+					'&:active': {
+						outline: 'none',
+						boxShadow: 'none',
+					},
 				}}>
 				Quick Actions
 			</Button>
@@ -71,7 +83,7 @@ export default function QuickActions() {
 							{item}
 						</Typography>
 					</MenuItem>
-				))} 
+				))}
 			</Menu>
 		</>
 	);

@@ -25,10 +25,22 @@ export default function FranchiseSwitcher() {
 					'&:hover': {
 						backgroundColor: '#e0e0e0',
 					},
-                    border: '1px solid #dfe3e8',
+					border: '1px solid #dfe3e8',
+					'&:focus': {
+						outline: 'none',
+						boxShadow: 'none',
+					},
+					'&:focus-visible': {
+						outline: 'none',
+						boxShadow: 'none',
+					},
+					'&:active': {
+						outline: 'none',
+						boxShadow: 'none',
+					},
 				}}>
 				<Box textAlign="left">
-					<Typography fontSize={12} fontWeight={800} color={"black"}>
+					<Typography fontSize={12} fontWeight={800} color={'black'}>
 						Domestic
 					</Typography>
 					<Typography fontSize={10} color="text.secondary">

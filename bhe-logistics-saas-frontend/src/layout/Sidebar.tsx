@@ -10,6 +10,7 @@ import {
 	ListItemIcon,
 	ListItemText,
 } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -22,7 +23,14 @@ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
-
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
+import PinDropOutlinedIcon from '@mui/icons-material/PinDropOutlined';
+import InventoryOutlinedIcon from '@mui/icons-material/InventoryOutlined';
+import GavelOutlinedIcon from '@mui/icons-material/GavelOutlined';
+import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 import { HEADER_HEIGHT } from '../constants/layout';
 import { useUiStore } from '../store/ui.store';
@@ -30,7 +38,7 @@ import { useAuthStore } from '../store/auth.store';
 import { franchiseMenu, superAdminMenu } from './sidebar.menu';
 import type { JSX } from 'react';
 
-const OPEN_WIDTH = 225;
+const OPEN_WIDTH = 245;
 const CLOSED_WIDTH = 64;
 
 const iconMap: Record<string, JSX.Element> = {
@@ -43,6 +51,16 @@ const iconMap: Record<string, JSX.Element> = {
 	balance: <AccountBalanceWalletOutlinedIcon />,
 	transactions: <ReceiptLongOutlinedIcon />,
 	settings: <SettingsIcon />,
+
+	// 🔹 Information Center Icons
+	information: <InfoOutlinedIcon />,
+	rateCalculator: <CalculateOutlinedIcon />,
+	rateCard: <ListAltOutlinedIcon />,
+	pincode: <PinDropOutlinedIcon />,
+	packaging: <InventoryOutlinedIcon />,
+	restricted: <GavelOutlinedIcon />,
+	awb: <ConfirmationNumberOutlinedIcon />,
+	terms: <DescriptionOutlinedIcon />,
 };
 
 export default function Sidebar() {
@@ -64,7 +82,7 @@ export default function Sidebar() {
 		isSidebarPinned,
 		openSidebar,
 		closeSidebar,
-		togglePin,
+		// togglePin,
 	} = useUiStore();
 
 	const drawerWidth = isSidebarOpen ? OPEN_WIDTH : CLOSED_WIDTH;
@@ -88,46 +106,6 @@ export default function Sidebar() {
 					color: '#fff',
 				},
 			}}>
-			{/* 🔹 SIDEBAR TOP (PROFILE + PIN) */}
-			<Box
-				sx={{
-					height: 64,
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'space-between',
-					px: 2,
-					borderBottom: '1px solid rgba(255,255,255,0.08)',
-				}}>
-				<img
-					src="/profile-image.png"
-					alt="Profile"
-					style={{
-						height: 32,
-						borderRadius: '50%',
-					}}
-				/>
-
-				{isSidebarOpen && (
-					<Box
-						onClick={togglePin}
-						sx={{
-							cursor: 'pointer',
-							display: 'flex',
-							alignItems: 'center',
-						}}>
-						<img
-							src={isSidebarPinned ? '/pin-img.png' : '/unpin-img.png'}
-							alt={isSidebarPinned ? 'Pinned' : 'Unpinned'}
-							style={{
-								height: 22,
-								userSelect: 'none',
-								opacity: 0.9,
-							}}
-						/>
-					</Box>
-				)}
-			</Box>
-
 			{/* 🔹 MENU */}
 			<Box sx={{ mt: 1 }}>
 				<List>
@@ -139,11 +117,8 @@ export default function Sidebar() {
 							<React.Fragment key={item.label}>
 								<ListItemButton
 									onClick={() => {
-										if (hasChildren) {
-											toggleMenu(item.label);
-										} else if (item.path) {
-											navigate(item.path);
-										}
+										if (hasChildren) toggleMenu(item.label);
+										else if (item.path) navigate(item.path);
 									}}
 									sx={{ px: 2 }}>
 									{item.icon && (
@@ -154,7 +129,13 @@ export default function Sidebar() {
 
 									{isSidebarOpen && (
 										<>
-											<ListItemText primary={item.label} />
+											<Tooltip
+												title={item.label}
+												placement="right"
+												arrow
+												disableHoverListener={!isSidebarOpen}>
+												<ListItemText primary={item.label} />
+											</Tooltip>
 											{hasChildren &&
 												(isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
 										</>
@@ -169,9 +150,11 @@ export default function Sidebar() {
 												key={child.label}
 												onClick={() => child.path && navigate(child.path)}
 												sx={{
-													pl: 4.5, // ✅ reduced indent
+													pl: 4.5,
 													py: 0.8,
 													color: '#cbd5f5',
+													borderRadius: '10px',
+													mx: 1,
 													'&:hover': {
 														backgroundColor: 'rgba(255,255,255,0.08)',
 													},
@@ -179,19 +162,19 @@ export default function Sidebar() {
 												{child.icon && (
 													<ListItemIcon
 														sx={{
-															minWidth: 32, // ✅ important
+															minWidth: 32,
 															color: '#cbd5f5',
 														}}>
 														{iconMap[child.icon]}
 													</ListItemIcon>
 												)}
 
-												<ListItemText
-													primary={child.label}
-													primaryTypographyProps={{
-														fontSize: 13,
-													}}
-												/>
+												<Tooltip title={child.label} placement="right" arrow>
+													<ListItemText
+														primary={child.label}
+														primaryTypographyProps={{ fontSize: 13 }}
+													/>
+												</Tooltip>
 											</ListItemButton>
 										))}
 									</List>
