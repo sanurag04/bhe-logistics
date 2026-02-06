@@ -45,7 +45,7 @@ body,
   max-width: none;
   box-sizing: border-box;
   overflow-x: auto;
-  background-color: #efefef;
+  /* background-color: #efefef; */
   color: #000000;
 }
 
@@ -66,7 +66,5 @@ body,
 .custom-css-1miy0lu-MuiTypography-root{
     color: #ffa500 !important;
     margin-top: 1.5rem !important;
-    font-weight: 600 !important;
-
-    
+    font-weight: 600 !important; 
 }

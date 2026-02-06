@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import RateForm, { type RateFormValues } from './components/RateForm';
-import RateResultTable from './components/RateResultTable';
-import rateService, {
-	type CarrierRate,
-} from '../shipment/services/rate.service';
+ import rateService, { type CarrierRate } from '../shipment/services/rate.service';
+
+import '../../styles/RateCalculatorStyle/rate-calculator.css';
+import RateSummaryPanel from './components/RateSummaryPanel';
+
 
 function RateCalculator() {
 	const [results, setResults] = useState<CarrierRate[]>([]);
@@ -31,14 +32,20 @@ function RateCalculator() {
 	};
 
 	return (
-		<div>
-			<header>
-				<h1>Rate Calculator</h1>
-			</header>
-			<RateForm onSubmit={handleSubmit} />
-			{isLoading && <p>Loading rates...</p>}
-			{error && <p role="alert">{error}</p>}
-			<RateResultTable results={results} />
+		<div className="rate-calculator-page">
+			<div className="rate-calculator-layout">
+				{/* LEFT */}
+				<div className="rate-left-panel">
+					<RateForm onSubmit={handleSubmit} />
+				</div>
+
+				{/* RIGHT */}
+				<div className="rate-right-panel">
+					{isLoading && <p className="loading-text">Loading rates...</p>}
+					{error && <p className="error-text">{error}</p>}
+ 					<RateSummaryPanel />
+				</div>
+			</div>
 		</div>
 	);
 }

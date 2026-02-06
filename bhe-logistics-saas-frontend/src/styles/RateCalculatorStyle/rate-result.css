@@ -1,0 +1,49 @@
+.rate-summary-card {
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	padding: 24px;
+	background: #fafafa;
+}
+
+.rate-summary-card h3 {
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.rate-price {
+	font-size: 34px;
+	font-weight: 700;
+	margin-bottom: 6px;
+}
+
+.rate-sub {
+	color: #6b7280;
+	font-size: 13px;
+	margin-bottom: 12px;
+}
+
+.rate-breakup {
+	font-size: 13px;
+	color: #374151;
+	margin-bottom: 16px;
+}
+
+.rate-link {
+	width: 100%;
+	padding: 12px;
+	border-radius: 10px;
+	border: none;
+	background: #eef2ff;
+	color: #4f46e5;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.rate-empty {
+	border: 1px dashed #d1d5db;
+	border-radius: 12px;
+	padding: 40px;
+	text-align: center;
+	color: #9ca3af;
+}
