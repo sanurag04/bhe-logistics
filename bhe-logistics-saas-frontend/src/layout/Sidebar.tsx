@@ -52,8 +52,7 @@ const iconMap: Record<string, JSX.Element> = {
 	transactions: <ReceiptLongOutlinedIcon />,
 	settings: <SettingsIcon />,
 
-	// 🔹 Information Center Icons
-	information: <InfoOutlinedIcon />,
+ 	information: <InfoOutlinedIcon />,
 	rateCalculator: <CalculateOutlinedIcon />,
 	rateCard: <ListAltOutlinedIcon />,
 	pincode: <PinDropOutlinedIcon />,
@@ -82,7 +81,7 @@ export default function Sidebar() {
 		isSidebarPinned,
 		openSidebar,
 		closeSidebar,
-		// togglePin,
+		togglePin,
 	} = useUiStore();
 
 	const drawerWidth = isSidebarOpen ? OPEN_WIDTH : CLOSED_WIDTH;
@@ -106,6 +105,46 @@ export default function Sidebar() {
 					color: '#fff',
 				},
 			}}>
+			{/* 🔹 SIDEBAR TOP (PROFILE + PIN) */}
+			<Box
+				sx={{
+					height: 64,
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'space-between',
+					px: 2,
+					borderBottom: '1px solid rgba(255,255,255,0.08)',
+				}}>
+				<img
+					src="/profile-image.png"
+					alt="Profile"
+					style={{
+						height: 32,
+						borderRadius: '50%',
+					}}
+				/>
+
+				{isSidebarOpen && (
+					<Box
+						onClick={togglePin}
+						sx={{
+							cursor: 'pointer',
+							display: 'flex',
+							alignItems: 'center',
+						}}>
+						<img
+							src={isSidebarPinned ? '/pin-img.png' : '/unpin-img.png'}
+							alt={isSidebarPinned ? 'Pinned' : 'Unpinned'}
+							style={{
+								height: 22,
+								userSelect: 'none',
+								opacity: 0.9,
+							}}
+						/>
+					</Box>
+				)}
+			</Box>
+
 			{/* 🔹 MENU */}
 			<Box sx={{ mt: 1 }}>
 				<List>
@@ -117,8 +156,11 @@ export default function Sidebar() {
 							<React.Fragment key={item.label}>
 								<ListItemButton
 									onClick={() => {
-										if (hasChildren) toggleMenu(item.label);
-										else if (item.path) navigate(item.path);
+										if (hasChildren) {
+											toggleMenu(item.label);
+										} else if (item.path) {
+											navigate(item.path);
+										}
 									}}
 									sx={{ px: 2 }}>
 									{item.icon && (
@@ -153,8 +195,6 @@ export default function Sidebar() {
 													pl: 4.5,
 													py: 0.8,
 													color: '#cbd5f5',
-													borderRadius: '10px',
-													mx: 1,
 													'&:hover': {
 														backgroundColor: 'rgba(255,255,255,0.08)',
 													},
