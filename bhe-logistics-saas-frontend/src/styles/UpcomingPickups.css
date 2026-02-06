@@ -1,0 +1,72 @@
+.up-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e9f2;
+  border-radius: 14px;
+  padding: 20px 24px;
+  width: 100%;
+  /* width: calc(100% - 5rem); */
+}
+
+/* Header row */
+.up-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+/* Title section */
+.up-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Icon circle */
+.up-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #f3f5fa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  font-size: 16px;
+}
+
+/* Create button */
+.up-create-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b5bfd;
+  cursor: pointer;
+  padding: 0;
+}
+
+.up-create-btn:hover {
+  text-decoration: underline;
+}
+
+/* Empty state */
+.up-empty {
+  text-align: center;
+  padding: 8px 0 4px;
+}
+
+.up-empty-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.up-empty-subtitle {
+  font-size: 13px;
+  color: #64748b;
+}

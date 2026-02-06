@@ -1,3 +1,5 @@
+import '../../../styles/WhatsNewItem.css';
+
 interface WhatsNewItem {
     title: string;
     description: string;
@@ -30,35 +32,29 @@ const whatsNewItems: WhatsNewItem[] = [
 
 const WhatsNew: React.FC = () => {
     return (
-        <div className="rounded-xl border bg-white p-5 shadow-sm">
-            <h3 className="mb-4 text-sm font-semibold text-slate-900">
-                What’s New
-            </h3>
+        <div className="whats-new-card">
+            <h3 className="whats-new-title">What’s New</h3>
 
-            <div className="space-y-4">
+            <div className="whats-new-list">
                 {whatsNewItems.map((item) => (
-                    <div key={item.title} className="flex items-start gap-3">
-                        <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs text-slate-600">
-                            •
-                        </span>
+                    <div key={item.title} className="whats-new-item">
+                        <span className="whats-new-dot">•</span>
 
-                        <div className="flex-1">
-                            <div className="flex items-center gap-2">
-                                <p className="text-sm font-medium text-slate-800">
-                                    {item.title}
-                                </p>
-                                {item.badge ? (
-                                    <span className="rounded bg-rose-50 px-2 py-0.5 text-[10px] font-semibold text-rose-600">
+                        <div className="whats-new-content">
+                            <div className="whats-new-item-title">
+                                {item.title}
+                                {item.badge && (
+                                    <span className="whats-new-badge">
                                         {item.badge}
                                     </span>
-                                ) : null}
+                                )}
                             </div>
-                            <p className="text-xs text-slate-500">
+                            <div className="whats-new-item-desc">
                                 {item.description}
-                            </p>
+                            </div>
                         </div>
 
-                        <span className="text-slate-300">{'›'}</span>
+                        <span className="whats-new-arrow">›</span>
                     </div>
                 ))}
             </div>

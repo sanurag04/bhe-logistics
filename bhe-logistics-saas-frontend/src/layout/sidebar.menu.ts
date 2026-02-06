@@ -11,29 +11,29 @@ export const franchiseMenu: SidebarMenuItem[] = [
   {
     label: 'Dashboard',
     icon: 'dashboard',
-    path: '/franchise/dashboard',
+    path: '/fr-home/dashboard',
   },
   {
   label: 'Shipments',
   icon: 'shipment',
   children: [
-    { label: 'Create Shipment', icon: 'createShipment', path: '/franchise/shipments/create' },
-    { label: 'All Shipments', icon: 'allShipments', path: '/franchise/shipments' },
-    { label: 'Tracking', icon: 'tracking', path: '/franchise/shipments/tracking' },
+    { label: 'Create Shipment', icon: 'createShipment', path: '/fr-home/shipments/create' },
+    { label: 'All Shipments', icon: 'allShipments', path: '/fr-home/shipments' },
+    { label: 'Tracking', icon: 'tracking', path: '/fr-home/shipments/tracking' },
   ],
 },
  {
   label: 'Wallet',
   icon: 'wallet',
   children: [
-    { label: 'Balance', icon: 'balance', path: '/franchise/wallet' },
-    { label: 'Transactions', icon: 'transactions', path: '/franchise/wallet/transactions' },
+    { label: 'Balance', icon: 'balance', path: '/fr-home/wallet' },
+    { label: 'Transactions', icon: 'transactions', path: '/fr-home/wallet/transactions' },
   ],
 },
   {
     label: 'Settings',
     icon: 'settings',
-    path: '/franchise/settings',
+    path: '/fr-home/settings',
   },
 ];
 

@@ -30,7 +30,7 @@ import { useAuthStore } from '../store/auth.store';
 import { franchiseMenu, superAdminMenu } from './sidebar.menu';
 import type { JSX } from 'react';
 
-const OPEN_WIDTH = 260;
+const OPEN_WIDTH = 225;
 const CLOSED_WIDTH = 64;
 
 const iconMap: Record<string, JSX.Element> = {
@@ -119,7 +119,7 @@ export default function Sidebar() {
 							src={isSidebarPinned ? '/pin-img.png' : '/unpin-img.png'}
 							alt={isSidebarPinned ? 'Pinned' : 'Unpinned'}
 							style={{
-								height: 32,
+								height: 22,
 								userSelect: 'none',
 								opacity: 0.9,
 							}}

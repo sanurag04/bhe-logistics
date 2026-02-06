@@ -42,7 +42,7 @@ function Login() {
 			return;
 		}
 
-		navigate('/franchise', { replace: true });
+		navigate('/fr-home', { replace: true });
 	} catch {
 		setError('Login failed. Please check your credentials.');
 	} finally {

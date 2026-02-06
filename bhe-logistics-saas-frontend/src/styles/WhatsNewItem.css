@@ -1,0 +1,101 @@
+/* Container */
+.whats-new-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px;                 
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+     width: 100%;
+    min-width: 320px;             
+    max-width: 360px;
+}
+
+
+/* Header */
+.whats-new-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;                    
+    padding: 8px 4px;              
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+
+/* List */
+.whats-new-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Item */
+.whats-new-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.whats-new-item:hover {
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+/* Divider */
+.whats-new-item:not(:last-child) {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Icon dot */
+.whats-new-dot {
+    margin-top: 3px;
+    height: 20px;                  
+    width: 20px;
+    font-size: 9px;
+}
+
+
+/* Content */
+.whats-new-content {
+    flex: 1;
+}
+
+/* Title row */
+.whats-new-item-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;              
+    color: #1e293b;
+}
+
+.whats-new-item-desc {
+    margin-top: 1px;              
+    font-size: 12px;
+    line-height: 1.3;             
+    color: #64748b;
+}
+
+
+/* Badge */
+.whats-new-badge {
+    background: #fff1f2;
+    color: #e11d48;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 999px;
+    line-height: 1;
+}
+
+/* Arrow */
+.whats-new-arrow {
+    margin-top: 3px;
+    color: #000;
+    font-size: 15px;              
+}
+

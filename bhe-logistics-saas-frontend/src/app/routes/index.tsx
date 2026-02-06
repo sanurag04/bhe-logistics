@@ -39,14 +39,14 @@ function AppRoutes() {
             }
           >
             <Route element={<MainLayout />}>
-              <Route path="/franchise" element={<Dashboard />} />
-              <Route path="/franchise/dashboard" element={<Dashboard />} />
+              <Route path="/fr-home" element={<Dashboard />} />
+              <Route path="/fr-home/dashboard" element={<Dashboard />} />
               <Route
-                path="/franchise/shipments/forward"
+                path="/fr-home/shipments/forward"
                 element={<ForwardShipment />}
               />
               <Route
-                path="/franchise/information-center/rate-calculator"
+                path="/fr-home/information-center/rate-calculator"
                 element={<RateCalculator />}
               />
             </Route>
