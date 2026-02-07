@@ -74,3 +74,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+
+/* Remove browser focus outlines */
+*:focus {
+	outline: none !important;
+}
+
+/* Remove focus-visible outlines */
+*:focus-visible {
+	outline: none !important;
+}
+
+/* MUI specific focus-visible removal */
+.Mui-focusVisible {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+/* IconButton focus ring */
+.MuiIconButton-root:focus,
+.MuiIconButton-root:focus-visible {
+	outline: none !important;
+	box-shadow: none !important;
+}

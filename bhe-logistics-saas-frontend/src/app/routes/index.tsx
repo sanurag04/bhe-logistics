@@ -10,8 +10,10 @@ import MainLayout from '../../layout/MainLayout';
 import Login from '../../modules/auth/Login';
 import Dashboard from '../../modules/dashboard/Dashboard';
 import RateCalculator from '../../modules/information-center/RateCalculator';
-import ForwardShipment from '../../modules/shipment/ForwardShipment';
 import AdminDashboard from '../../modules/admin/AdminDashboard';
+import ForwardShipment from '../../modules/shipment/forward/CreateForwardShipment';
+import ReverseShipment from '../../modules/shipment/reverse/ReverseShipment';
+import DomesticPickup from '../../modules/shipment/pickup-requests/DomesticPickup';
 
 function AppRoutes() {
 	return (
@@ -42,10 +44,7 @@ function AppRoutes() {
 						<Route element={<MainLayout />}>
 							<Route path="/fr-home" element={<Dashboard />} />
 							<Route path="/fr-home/dashboard" element={<Dashboard />} />
-							<Route
-								path="/fr-home/shipments/forward"
-								element={<ForwardShipment />}
-							/>
+
 							<Route
 								path="/fr-home/information-center/rate-calculator"
 								element={<RateCalculator />}
@@ -74,6 +73,19 @@ function AppRoutes() {
 								path="/information-center/fetch-awb"
 								element={<FetchAWB />}
 							/> */}
+
+							<Route
+								path="/fr-home/shipments/forward/create"
+								element={<ForwardShipment />}
+							/>
+							<Route
+								path="/fr-home/shipments/reverse/create"
+								element={<ReverseShipment />}
+							/>
+							<Route
+								path="/fr-home/shipments/pickup-requests/domestic"
+								element={<DomesticPickup />}
+							/>
 						</Route>
 					</Route>
 				</Route>

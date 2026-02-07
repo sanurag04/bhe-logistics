@@ -12,12 +12,12 @@ export const franchiseMenu: SidebarMenuItem[] = [
 		path: '/fr-home/dashboard',
 	},
 	{
-		label: 'Shipments',
+		label: 'Shipments & Pickups',
 		icon: 'shipment',
 		children: [
-			{ label: 'Create Shipment', icon: 'createShipment', path: '/fr-home/shipments/create' },
-			{ label: 'All Shipments', icon: 'allShipments', path: '/fr-home/shipments' },
-			{ label: 'Tracking', icon: 'tracking', path: '/fr-home/shipments/tracking' },
+			{ label: 'Create Forward Shipment', icon: 'createShipment', path: '/fr-home/shipments/forward/create' },
+			{ label: 'Create Reverse Shipment', icon: 'reverseShipment', path: '/fr-home/shipments/reverse/create' },
+			{ label: 'Pickup Requests', icon: 'pickupRequests', path: '/fr-home/shipments/pickup-requests/domestic' },
 		],
 	},
 	{

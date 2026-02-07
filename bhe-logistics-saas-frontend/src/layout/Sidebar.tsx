@@ -20,7 +20,8 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import UndoIcon from '@mui/icons-material/Undo';
+ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
@@ -65,6 +66,8 @@ const iconMap: Record<string, JSX.Element> = {
 	restricted: <GavelOutlinedIcon />,
 	awb: <ConfirmationNumberOutlinedIcon />,
 	terms: <DescriptionOutlinedIcon />,
+	reverseShipment: <UndoIcon />,
+	pickupRequests: <LocalShippingIcon  />,
 };
 
 export default function Sidebar() {

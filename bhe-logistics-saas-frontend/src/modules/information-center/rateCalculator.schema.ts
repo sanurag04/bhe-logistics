@@ -1,7 +1,18 @@
 /** @format */
 
 import { z } from 'zod';
-import { positiveNumberString } from '../shipment/forward/forwardShipment.schema';
+
+const positiveNumberString = z
+	.string()
+	.trim()
+	.min(1, 'Required')
+	.refine(
+		(value) => {
+			const parsed = Number(value);
+			return Number.isFinite(parsed) && parsed > 0;
+		},
+		{ message: 'Must be a positive number' }
+	);
 
 const pincodeString = z
 	.string()
