@@ -1,7 +1,8 @@
 /** @format */
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 import {
 	Drawer,
 	Box,
@@ -41,6 +42,10 @@ import type { JSX } from 'react';
 const OPEN_WIDTH = 245;
 const CLOSED_WIDTH = 64;
 
+type MenuChild = {
+	path?: string;
+};
+
 const iconMap: Record<string, JSX.Element> = {
 	dashboard: <DashboardIcon />,
 	shipment: <LocalShippingIcon />,
@@ -52,7 +57,7 @@ const iconMap: Record<string, JSX.Element> = {
 	transactions: <ReceiptLongOutlinedIcon />,
 	settings: <SettingsIcon />,
 
- 	information: <InfoOutlinedIcon />,
+	information: <InfoOutlinedIcon />,
 	rateCalculator: <CalculateOutlinedIcon />,
 	rateCard: <ListAltOutlinedIcon />,
 	pincode: <PinDropOutlinedIcon />,
@@ -63,17 +68,34 @@ const iconMap: Record<string, JSX.Element> = {
 };
 
 export default function Sidebar() {
-	const navigate = useNavigate();
-	const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
-
-	const toggleMenu = (label: string) => {
-		setOpenMenus((prev) => ({
-			...prev,
-			[label]: !prev[label],
-		}));
+	const location = useLocation();
+	const isActiveRoute = (path?: string) => {
+		if (!path) return false;
+		return location.pathname === path;
 	};
 
-	const { role } = useAuthStore();
+	const isChildActive = (children?: MenuChild[]) => {
+		if (!children) return false;
+		return children.some(
+			(child) => !!child.path && location.pathname.startsWith(child.path),
+		);
+	};
+
+	const activeStyles = {
+		backgroundColor: 'rgba(255,255,255,0.08)',
+		color: '#fff',
+		borderRadius: '10px',
+		mx: 1,
+	};
+const navigate = useNavigate();
+const [manualOpenLabel, setManualOpenLabel] = useState<string | null>(null);
+
+const toggleMenu = (label: string) => {
+	setManualOpenLabel((prev) => (prev === label ? null : label));
+};
+
+
+const { role } = useAuthStore();
 	const menuItems = role === 'SUPER_ADMIN' ? superAdminMenu : franchiseMenu;
 
 	const {
@@ -84,9 +106,10 @@ export default function Sidebar() {
 		togglePin,
 	} = useUiStore();
 
-	const drawerWidth = isSidebarOpen ? OPEN_WIDTH : CLOSED_WIDTH;
+const drawerWidth = isSidebarOpen ? OPEN_WIDTH : CLOSED_WIDTH;
 
-	return (
+
+return (
 		<Drawer
 			variant="permanent"
 			onMouseEnter={() => !isSidebarPinned && openSidebar()}
@@ -150,7 +173,7 @@ export default function Sidebar() {
 				<List>
 					{menuItems.map((item) => {
 						const hasChildren = !!item.children?.length;
-						const isOpen = openMenus[item.label];
+						const isOpen = manualOpenLabel === item.label;
 
 						return (
 							<React.Fragment key={item.label}>
@@ -162,9 +185,31 @@ export default function Sidebar() {
 											navigate(item.path);
 										}
 									}}
-									sx={{ px: 2 }}>
+									sx={{
+										px: 2,
+										borderBottom: '1px solid rgba(255,255,255,0.08)',
+										my:
+											isActiveRoute(item.path) || isChildActive(item.children)
+												? 0.6  
+												: 0,
+										...(isActiveRoute(item.path) || isChildActive(item.children)
+											? activeStyles
+											: {}),
+										'&:hover': {
+											backgroundColor: 'rgba(255,255,255,0.08)',
+										},
+									}}>
 									{item.icon && (
-										<ListItemIcon sx={{ color: '#fff', minWidth: 40 }}>
+										<ListItemIcon
+											sx={{
+												color: '#fff',
+												minWidth: 40,
+												// color:
+												// 	isActiveRoute(item.path) ||
+												// 	isChildActive(item.children)
+												// 		? '#000'
+												// 		: '#fff',
+											}}>
 											{iconMap[item.icon]}
 										</ListItemIcon>
 									)}
@@ -176,7 +221,22 @@ export default function Sidebar() {
 												placement="right"
 												arrow
 												disableHoverListener={!isSidebarOpen}>
-												<ListItemText primary={item.label} />
+												<ListItemText
+													primary={item.label}
+													primaryTypographyProps={{
+														fontWeight:
+															isActiveRoute(item.path) ||
+															isChildActive(item.children)
+																? 500
+																: 400,
+															 
+														// color:
+														// 	isActiveRoute(item.path) ||
+														// 	isChildActive(item.children)
+														// 		? '#000'
+														// 		: '#fff',
+													}}
+												/>
 											</Tooltip>
 											{hasChildren &&
 												(isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
@@ -191,12 +251,29 @@ export default function Sidebar() {
 											<ListItemButton
 												key={child.label}
 												onClick={() => child.path && navigate(child.path)}
+												// sx={{
+												// 	pl: 4.5,
+												// 	py: 0.8,
+												// 	color: '#fff',
+												// 	'&:hover': {
+												// 		backgroundColor: 'rgba(255,255,255,0.08)',
+												// 	},
+												// }}
 												sx={{
-													pl: 4.5,
+													pl: 2,
 													py: 0.8,
-													color: '#cbd5f5',
+													mx: 2.5,
+													borderRadius: '8px',
+													color: '#fff',
+													borderBottom: '1px solid rgba(255,255,255,0.08)',
+													// color: isActiveRoute(child.path) ? '#000' : '#cbd5f5',
+													backgroundColor: isActiveRoute(child.path)
+														? 'rgba(255,255,255,0.08)'
+														: 'transparent',
 													'&:hover': {
-														backgroundColor: 'rgba(255,255,255,0.08)',
+														backgroundColor: isActiveRoute(child.path)
+															? 'rgba(255,255,255,0.08)'
+															: 'rgba(255,255,255,0.08)',
 													},
 												}}>
 												{child.icon && (
@@ -204,7 +281,14 @@ export default function Sidebar() {
 														sx={{
 															minWidth: 32,
 															color: '#cbd5f5',
-														}}>
+														}}
+														// sx={{
+														// 	minWidth: 32,
+														// 	color: isActiveRoute(child.path)
+														// 		? '#000'
+														// 		: '#cbd5f5',
+														// }}
+													>
 														{iconMap[child.icon]}
 													</ListItemIcon>
 												)}
@@ -212,7 +296,11 @@ export default function Sidebar() {
 												<Tooltip title={child.label} placement="right" arrow>
 													<ListItemText
 														primary={child.label}
-														primaryTypographyProps={{ fontSize: 13 }}
+														primaryTypographyProps={{
+															fontSize: 13,
+															// fontWeight: isActiveRoute(child.path) ? 600 : 400,
+															//  color: isActiveRoute(child.path) ? '#000' : '#cbd5f5',
+														}}
 													/>
 												</Tooltip>
 											</ListItemButton>
