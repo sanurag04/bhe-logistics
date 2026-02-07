@@ -7,7 +7,6 @@ import QuickActions from '../components/header/QuickActions';
 import FranchiseSwitcher from '../components/header/FranchiseSwitcher';
 import UserMenu from '../components/header/UserMenu';
 
-
 export default function Header() {
 	return (
 		<AppBar
@@ -28,15 +27,33 @@ export default function Header() {
 					justifyContent: 'space-between',
 				}}>
 				{/* 🔹 LEFT: LOGO */}
-				<Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-					<img
+				<Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}> 
+					<Box
+						component="img"
 						src="/bhe-header-logo.png"
-						alt="BHE Logistics"
-						style={{ height: 50 }}
-					/>
+						alt="BHE"
+						sx={{
+							height: {
+								xs: 28,
+								sm: 32,
+								md: 38,
+								lg: 42,
+							},
+						}}
+					/> 
 					<Typography
-						variant="h6"
-						className="custom-css-1miy0lu-MuiTypography-root">
+						className="custom-css-1miy0lu-MuiTypography-root"
+						sx={{
+							fontWeight: 700,
+							lineHeight: 1.1,
+							fontSize: {
+								xs: '14px', 
+								sm: '16px',  
+								md: '18px',  
+								lg: '20px',  
+								xl: '22px',  
+							},
+						}}>
 						Your Logistics Partner
 					</Typography>
 				</Box>
@@ -47,7 +64,7 @@ export default function Header() {
 				<Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
 					<QuickActions />
 					<FranchiseSwitcher />
-					 <UserMenu />
+					<UserMenu />
 				</Box>
 			</Toolbar>
 		</AppBar>
