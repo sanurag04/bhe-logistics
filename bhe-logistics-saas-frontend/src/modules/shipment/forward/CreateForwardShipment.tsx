@@ -75,7 +75,12 @@ const CreateForwardShipment = () => {
 
 	return (
 		<Box className="cfs-root">
-			<Grid container spacing={3} alignItems="flex-start" justifyContent="center">
+			<Grid
+				container
+				spacing={3}
+				alignItems="flex-start"
+				justifyContent="center"
+				marginBottom={3}>
 				{/* LEFT SECTION */}
 				<Grid
 					size={{ xs: 10, md: 5 }}
@@ -460,44 +465,47 @@ const CreateForwardShipment = () => {
 								How many boxes will you ship?
 							</Typography>
 
-							<RadioGroup row>
-								{[1, 2, 3, 4, 5].map((v) => (
-									<FormControlLabel
+							<Box display="flex" alignItems="center" gap={1} width="100%">
+								{/* Radios (fixed width) */}
+								<RadioGroup row sx={{ flexShrink: 0 }}>
+									{[1, 2, 3, 4, 5].map((v) => (
+										<FormControlLabel
 										key={v}
 										value={v}
 										label={v}
 										control={<Radio />}
-										sx={{
-											'& .MuiFormControlLabel-label': {
-												color: '#000',
-												fontWeight: 500,
-											},
-										}}
-									/>
-								))}
+											sx={{
+												mr: 1, 
+												'& .MuiFormControlLabel-label': {
+													color: '#000',
+													fontWeight: 500,
+												},
+											}}
+										/>
+									))}
+								</RadioGroup>
+
+								{/* Auto-expanding input */}
 								<TextField
 									type="number"
 									size="small"
+									placeholder="6+"
 									value={customBoxCount}
 									onChange={(e) => setCustomBoxCount(Number(e.target.value))}
-									inputProps={{
-										min: 6,
-										style: { textAlign: 'center' },
-									}}
+									inputProps={{ min: 6 }}
 									sx={{
-										width: 50,
-										color: '#000',
+										flex: 1, // ✅ THIS is what was missing
+										minWidth: 0, // ✅ IMPORTANT for flexbox
+										backgroundColor: '#fff',
+										borderRadius: '6px',
 										'& .MuiInputBase-input': {
-											padding: '3px 0',
-										},
-										ml: 0,
-										mt: '4px',
-										'& input': {
+											textAlign: 'center',
 											fontWeight: 500,
+											padding: '6px 8px',
 										},
 									}}
 								/>
-							</RadioGroup>
+							</Box>
 
 							{/* <RadioGroup
 								row
@@ -740,8 +748,9 @@ const CreateForwardShipment = () => {
 							<Divider sx={{ my: 2 }} />
 
 							<div className="volumetric-box">
- 								<p>
-									(ⓘ Shipping cost will be based on total weight and shipping mode)
+								<p>
+									(ⓘ Shipping cost will be based on total weight and shipping
+									mode)
 								</p>
 							</div>
 						</CardContent>
@@ -751,7 +760,7 @@ const CreateForwardShipment = () => {
 
 			{/* FOOTER ACTIONS */}
 			<Box className="cfs-footer">
-				<Button variant="outlined">Cancel</Button>
+				<Button variant="contained">Cancel</Button>
 				<Button variant="contained">Create Forward Shipment</Button>
 			</Box>
 		</Box>

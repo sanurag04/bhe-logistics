@@ -4,6 +4,11 @@
 	padding: 24px;
 	background: #fff;
 	color: #000;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	overflow: hidden;
+        padding-bottom: 66rem !important;
 }
 
 .cfs-root * {
@@ -28,22 +33,51 @@
 	font-size: 22px;
 }
 
-.cfs-title { 
+.cfs-title {
 	margin-bottom: 16px;
-    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.125rem;
-    line-height: 1.25rem;
-    color: #000 !important;
+	font-family:
+		'IBM Plex Sans',
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial,
+		'Noto Sans',
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol',
+		'Noto Color Emoji' !important;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 1.125rem;
+	line-height: 1.25rem;
+	color: #000 !important;
 }
 
 .cfs-label {
 	font-size: 13px;
 	margin-bottom: 6px;
-    color: #000 !important;
-        font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
-
+	color: #000 !important;
+	font-family:
+		'IBM Plex Sans',
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial,
+		'Noto Sans',
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol',
+		'Noto Color Emoji' !important;
 }
 
 .cfs-counter {
@@ -91,19 +125,32 @@
 }
 
 .cfs-footer {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fff;
+	border-top: 1px solid #e5e7eb;
+	padding: 12px 24px;
 	display: flex;
 	justify-content: flex-end;
 	gap: 12px;
-	margin-top: 24px;
+	z-index: 10;
+
+    button{
+        background-color: #0d2868;
+
+    }
 }
 
 
- .cfs-left-col,
+ 
+
+.cfs-left-col,
 .cfs-right-col {
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;
 }
-
 
 /* Field labels like Item Count */
 .cfs-field-label {
@@ -137,7 +184,7 @@
 	justify-content: center;
 	font-size: 18px;
 	font-weight: 600;
-	color: #6b7280; 
+	color: #6b7280;
 }
 
 /* Helper text under inputs */
@@ -160,7 +207,7 @@
 	display: grid;
 	grid-template-columns: 2.5fr auto 2.5fr auto 3fr;
 	column-gap: 12px;
-	align-items: center;  
+	align-items: center;
 }
 
 /* INPUT COLUMNS */
@@ -181,40 +228,40 @@
 /* BOTTOM ROW (helper text aligned) */
 .cfs-value-row-bottom {
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 }
 
 /* Timeline wrapper */
 .cfs-timeline {
-  width: 24px;
-  display: flex;
-  justify-content: center;
-  margin-top: 6px; /* aligns orange dot with Select */
+	width: 24px;
+	display: flex;
+	justify-content: center;
+	margin-top: 6px; /* aligns orange dot with Select */
 }
 
 /* Content column */
 .cfs-content {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 /* Seller row background (highlighted) */
 .cfs-seller-row {
-  background: #f8fafc;
-  border-radius: 8px;
-  margin-top: 8px;
+	background: #f8fafc;
+	border-radius: 8px;
+	margin-top: 8px;
 }
 
 /* Customer row (plain) */
 .cfs-customer-row {
-  margin-top: 12px;
+	margin-top: 12px;
 }
 
 /* Existing link button – keep text left aligned */
 .cfs-link-btn {
-  justify-content: flex-start !important;
-  font-size: 13px;
-  font-weight: 500;
-  color: #2563eb;
-  padding: 10px 12px;
+	justify-content: flex-start !important;
+	font-size: 13px;
+	font-weight: 500;
+	color: #2563eb;
+	padding: 10px 12px;
 }
