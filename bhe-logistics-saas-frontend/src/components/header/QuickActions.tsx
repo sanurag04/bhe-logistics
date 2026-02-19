@@ -2,16 +2,35 @@
 import { useState } from 'react';
 import { Box, Button, Menu, MenuItem, Typography } from '@mui/material';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
+import { useNavigate } from 'react-router-dom';
 
 const actions = [
-	'Create a forward shipment',
-	'Create forward shipments in bulk',
-	'Create a reverse pickup shipment',
-	'Create a pickup request',
+	{
+		label: 'Create a forward shipment',
+		path: '/fr-home/shipments/forward/create',
+	},
+	{
+		label: 'Create forward shipments in bulk',
+		path: '/fr-home/shipments/forward/bulk-upload',
+	},
+	{
+		label: 'Create a reverse pickup shipment',
+		path: '/fr-home/shipments/reverse/create',
+	},
+	{
+		label: 'Create a pickup request',
+		path: '/fr-home/shipments/pickup-requests/domestic',
+	},
 ];
 
 export default function QuickActions() {
 	const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+	const navigate = useNavigate();
+
+	const handleNavigate = (path: string) => {
+		navigate(path);
+		setAnchorEl(null); // close menu after click
+	};
 
 	return (
 		<>
@@ -41,19 +60,9 @@ export default function QuickActions() {
 					borderRadius: 1,
 					px: 1.5,
 					height: 40,
-					'&:hover': {
-						backgroundColor: '#e0e0e0',
-					},
 					border: '1px solid #dfe3e8',
-					'&:focus': {
-						outline: 'none',
-						boxShadow: 'none',
-					},
-					'&:focus-visible': {
-						outline: 'none',
-						boxShadow: 'none',
-					},
-					'&:active': {
+					'&:hover': { backgroundColor: '#e0e0e0' },
+					'&:focus, &:focus-visible, &:active': {
 						outline: 'none',
 						boxShadow: 'none',
 					},
@@ -69,18 +78,19 @@ export default function QuickActions() {
 					sx: { width: 320, mt: 1, borderRadius: 2 },
 				}}>
 				{actions.map((item) => (
-					<MenuItem key={item}>
+					<MenuItem
+						key={item.label}
+						onClick={() => handleNavigate(item.path)}
+					>
 						<Typography
 							sx={{
 								fontFamily: 'IBM Plex Sans',
-								fontStyle: 'normal',
 								fontWeight: 500,
 								fontSize: '.875rem',
 								lineHeight: '1.25rem',
 								color: '#3d445c',
-							}}
-							fontSize={14}>
-							{item}
+							}}>
+							{item.label}
 						</Typography>
 					</MenuItem>
 				))}
